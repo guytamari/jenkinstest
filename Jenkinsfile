@@ -3,7 +3,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'python3.10 -m venv ./venv'
+                sh '''
+                    pip install python3.10
+                    python3.10 -m venv ./venv
+                '''
             }
         }
       stage('Test') {
