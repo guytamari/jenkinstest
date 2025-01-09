@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'python3.10 -m venv ./venv'
-                sh ' . .env/bin/activate ' 
+                sh 'python3 -m venv ./venv'
+                // sh ' . .env/bin/activate ' 
                 // withPythonEnv('/usr/bin/python3.8') {
                 // sh 'echo "Job is starting" '
                 // }            
@@ -13,9 +13,7 @@ pipeline {
         }
       stage('Test') {
             steps {
-                withPythonEnv('/usr/bin/python3.8') {
-                sh 'pytest simple.py '
-                }            
+               sh 'python3 simple.py'         
             }
         }
       stage('Deploy') {
