@@ -3,13 +3,15 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'pip install python3'
-                sh 'pip install pytest'
+                sh 'python3.10 -m venv ./venv'
             }
         }
       stage('Test') {
             steps {
-                sh 'pytest simple.py'
+                sh '''
+                    . ./venv/bin/activate
+                    pytest simple.py
+                '''
             }
         }
       stage('Deploy') {
