@@ -8,7 +8,7 @@ pipeline {
         }
       stage('Test') {
             steps {
-                pytest
+                bat 'pytest simple.py'
             }
         }
       stage('Deploy') {
