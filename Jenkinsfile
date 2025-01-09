@@ -3,12 +3,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'build'
+                sh 'pip install python3'
+                sh 'pip install pytest'
             }
         }
       stage('Test') {
             steps {
-                bat 'pytest simple.py'
+                sh 'pytest simple.py'
             }
         }
       stage('Deploy') {
