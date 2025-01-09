@@ -3,9 +3,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                withPythonEnv('/usr/bin/python3.8') {
-                sh 'echo "Job is starting" '
-                }            
+                sh ' . .env/bin/activate ' 
+                // withPythonEnv('/usr/bin/python3.8') {
+                // sh 'echo "Job is starting" '
+                // }            
                 
             }
         }
