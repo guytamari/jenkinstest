@@ -5,18 +5,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh '''
-                    pip install python3.10
-                    python3.10 -m venv ./venv
-                '''
+                withPythonEnv('/usr/bin/python3.8') {
+                sh 'echo "Job is starting" '
+                }            
+                
             }
         }
       stage('Test') {
             steps {
-                sh '''
-                    . ./venv/bin/activate
-                    pytest simple.py
-                '''
+                withPythonEnv('/usr/bin/python3.8') {
+                sh 'pytest simple.py '
+                }            
             }
         }
       stage('Deploy') {
