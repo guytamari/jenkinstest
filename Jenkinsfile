@@ -1,14 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
-            steps {
-                sh 'pip3 install pytest'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         sh 'pip3 install pytest'
+        //     }
+        // }
         stage('Test') {
             steps {
-                sh 'pytest tests'
+                sh 'pipx run pytest tests'
+
             }
         }
         stage('Deploy') {
