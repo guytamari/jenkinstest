@@ -1,18 +1,18 @@
 pipeline {
     agent any
     stages {
-        stage('Install pip') {
+        stage('Install Python3 and pip') {
             steps {
                 script {
-                    // Ensure pip is installed
-                    sh 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
-                    sh 'python3 get-pip.py'
+                    // Install Python3 and pip
+                    sh 'apt-get update'
+                    sh 'apt-get install -y python3 python3-pip'
                 }
             }
         }
         stage('Build') {
             steps {
-                sh 'pip install pytest'
+                sh 'pip3 install pytest'
             }
         }
         stage('Test') {
