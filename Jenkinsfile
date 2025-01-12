@@ -4,13 +4,17 @@ pipeline {
         stage('Install Python3 and pip') {
             steps {
                 script {
-                    // Ensure Python3 and pip3 are installed
-                    sh 'apt-get update -y'
-                    sh 'apt-get install -y python3 python3-pip'
+                    // Manually install pip if not already available
+                    sh 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
+                    sh 'python3 get-pip.py'
                 }
             }
         }
-        
+        stage('Check Docker') {
+            steps {
+                sh 'docker --version'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'python3 -m pip install --upgrade pip'
