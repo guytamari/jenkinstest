@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'building python file'         
+                echo 'installing dep'
+                sh 'pip install pytest'
                 
             }
         }
