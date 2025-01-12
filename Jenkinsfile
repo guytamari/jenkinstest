@@ -1,13 +1,13 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.9-slim'
-        }
-    }
+    agent any
     stages {
-        stage('Check Docker') {
+        stage('Install pip') {
             steps {
-                sh 'docker --version'
+                script {
+                    // Ensure pip is installed
+                    sh 'curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py'
+                    sh 'python get-pip.py'
+                }
             }
         }
         stage('Build') {
