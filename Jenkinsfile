@@ -5,6 +5,11 @@ pipeline {
         }
     }
     stages {
+        stage('Check Docker') {
+            steps {
+                sh 'docker --version'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'pip install pytest'
