@@ -4,13 +4,20 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'installing dep'
-                sh 'pip install pytest'
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install pytest
+                '''
                 
             }
         }
       stage('Test') {
             steps {
-               sh 'pytest tests'         
+               sh '''
+                    . venv/bin/activate
+                    pytest tests
+                '''
             }
         }
       stage('Deploy') {
