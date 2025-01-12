@@ -1,26 +1,21 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.9-slim'
+        }
+    }
     stages {
         stage('Build') {
             steps {
-                echo 'installing dep'
-                sh '''
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    pip install pytest
-                '''
-                
+                sh 'pip install pytest'
             }
         }
-      stage('Test') {
+        stage('Test') {
             steps {
-               sh '''
-                    . venv/bin/activate
-                    pytest tests
-                '''
+                sh 'pytest tests'
             }
         }
-      stage('Deploy') {
+        stage('Deploy') {
             steps {
                 echo 'Deploy'
             }
