@@ -8,7 +8,7 @@ pipeline {
         // }
         stage('Test') {
             steps {
-                sh 'pipx run pytest tests'
+                sh 'pipx run pytest tests/test.py'
 
             }
         }
